@@ -19,6 +19,7 @@ import javax.swing.border.EmptyBorder;
 import vo.Casilla;
 import vo.Producto;
 
+
 public class AgregarProductoCasilla extends JFrame {
 
 	private Casilla[][] maquina;
