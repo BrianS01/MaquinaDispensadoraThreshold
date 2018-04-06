@@ -113,7 +113,7 @@ public class Venta extends JFrame {
 
 		monedaDeCien = new JLabel("");
 		monedaDeCien.setIcon(new ImageIcon(
-				"C:\\Users\\cristian\\eclipse-workspace\\MaquinaDispensadora\\src\\imagenes\\MonedaDe100.PNG"));
+				"C:\\Users\\cristian\\Documents\\GitHub\\MaquinaDispensadoraThreshold\\src\\imagenes\\MonedaDe100.PNG"));
 		monedaDeCien.setBounds(46, 320, 64, 58);
 		contentPane.add(monedaDeCien);
 
