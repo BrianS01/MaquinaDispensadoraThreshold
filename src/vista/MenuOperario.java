@@ -136,7 +136,7 @@ public class MenuOperario extends JFrame {
 	public void cambiarInterfaz() {
 		InsertarProducto insertarProducto = new InsertarProducto(this);
 		insertarProducto.setVisible(true);
-		this.dispose();
+		this.dispose(); 
 	}
 
 	public void cambiarInterfaz1() {
