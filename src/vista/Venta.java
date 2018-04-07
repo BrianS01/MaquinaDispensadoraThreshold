@@ -112,52 +112,56 @@ public class Venta extends JFrame {
 		contentPane.add(mensaje1);
 
 		monedaDeCien = new JLabel("");
-		monedaDeCien.setIcon(new ImageIcon(
-				"\\src\\imagenes\\MonedaDe100.PNG"));
+		monedaDeCien.setIcon(new ImageIcon(Venta.class.getResource("/imagenes/MonedaDe100.PNG")));
 		monedaDeCien.setBounds(46, 320, 64, 58);
 		contentPane.add(monedaDeCien);
+		
+		//Image imagenExterna = new ImageIcon("tierra.jpg").getImage();
 
 		monedaDe200 = new JLabel("");
-		monedaDe200.setIcon(new ImageIcon(
-				"C:\\Users\\cristian\\eclipse-workspace\\MaquinaDispensadora\\src\\imagenes\\MonedaDe200.PNG"));
-		monedaDe200.setBounds(115, 320, 46, 53);
+		monedaDe200.setIcon(new ImageIcon(Venta.class.getResource("/imagenes/MonedaDe200.PNG")));
+		monedaDe200.setBounds(115, 322, 46, 53);
 		contentPane.add(monedaDe200);
 
 		monedaDe500 = new JLabel("");
-		monedaDe500.setIcon(new ImageIcon(
-				"C:\\Users\\cristian\\eclipse-workspace\\MaquinaDispensadora\\src\\imagenes\\MonedaDe500.PNG"));
+		monedaDe500.setIcon(new ImageIcon(Venta.class.getResource("/imagenes/MonedaDe500.PNG")));
 		monedaDe500.setBounds(186, 320, 54, 58);
 		contentPane.add(monedaDe500);
 
 		billeteDe1000 = new JLabel("");
-		billeteDe1000.setIcon(new ImageIcon(
-				"C:\\Users\\cristian\\eclipse-workspace\\MaquinaDispensadora\\src\\imagenes\\BilleteDe1000.PNG"));
-		billeteDe1000.setBounds(46, 390, 114, 59);
+		billeteDe1000.setIcon(new ImageIcon(Venta.class.getResource("/imagenes/billeteDe1000.PNG")));
+		billeteDe1000.setBounds(266, 320, 114, 59);
 		contentPane.add(billeteDe1000);
 
 		billeteDe2000 = new JLabel("");
-		billeteDe2000.setIcon(new ImageIcon(
-				"C:\\Users\\cristian\\eclipse-workspace\\MaquinaDispensadora\\src\\imagenes\\billeteDe2000.PNG"));
-		billeteDe2000.setBounds(180, 390, 114, 58);
+		billeteDe2000.setIcon(new ImageIcon(Venta.class.getResource("/imagenes/billeteDe2000.PNG")));
+		billeteDe2000.setBounds(46, 390, 114, 58);
 		contentPane.add(billeteDe2000);
 
 		billeteDe5000 = new JLabel("");
-		billeteDe5000.setIcon(new ImageIcon(
-				"C:\\Users\\cristian\\eclipse-workspace\\MaquinaDispensadora\\src\\imagenes\\BilleteDe5000.PNG"));
-		billeteDe5000.setBounds(330, 390, 106, 52);
+		billeteDe5000.setIcon(new ImageIcon(Venta.class.getResource("/imagenes/billeteDe5000.PNG")));
+		billeteDe5000.setBounds(178, 390, 106, 52);
 		contentPane.add(billeteDe5000);
 
 		billeteDe10000 = new JLabel("");
-		billeteDe10000.setIcon(new ImageIcon(
-				"C:\\Users\\cristian\\eclipse-workspace\\MaquinaDispensadora\\src\\imagenes\\BilleteDe10000.PNG"));
-		billeteDe10000.setBounds(46, 467, 114, 59);
+		billeteDe10000.setIcon(new ImageIcon(Venta.class.getResource("/imagenes/billeteDe10000.PNG")));
+		billeteDe10000.setBounds(300, 390, 114, 59);
 		contentPane.add(billeteDe10000);
 
 		billeteDe20000 = new JLabel("");
-		billeteDe20000.setIcon(new ImageIcon(
-				"C:\\Users\\cristian\\eclipse-workspace\\MaquinaDispensadora\\src\\imagenes\\BilleteDe20000.PNG"));
-		billeteDe20000.setBounds(110, 467, 114, 59);
+		billeteDe20000.setIcon(new ImageIcon(Venta.class.getResource("/imagenes/billeteDe20000.PNG")));
+		billeteDe20000.setBounds(46, 460, 114, 59);
 		contentPane.add(billeteDe20000);
+		
+		billeteDe50000 = new JLabel("");
+		billeteDe50000.setIcon(new ImageIcon(Venta.class.getResource("/imagenes/billeteDe50000.PNG")));
+		billeteDe50000.setBounds(163, 458, 114, 59);
+		contentPane.add(billeteDe50000);
+		
+		billeteDe100000 = new JLabel("");
+		billeteDe100000.setIcon(new ImageIcon(Venta.class.getResource("/imagenes/billeteDeCienMil.PNG")));
+		billeteDe100000.setBounds(295, 458, 139, 59);
+		contentPane.add(billeteDe100000);
 		
 		txtCantidad = new JLabel("Cantidad ingresada: ");
 		txtCantidad.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -192,7 +196,7 @@ public class Venta extends JFrame {
 
 			}
 		});
-
+		
 		monedaDeCien.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -245,6 +249,27 @@ public class Venta extends JFrame {
 			public void mouseClicked(MouseEvent arg0) {
 				eventoSeleccionDinero10000();
 				 mostrarMaquina() ;
+			}
+		});
+		
+		billeteDe20000.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				eventoSeleccionDinero20000();
+			}
+		});
+		
+		billeteDe50000.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				eventoSeleccionDinero50000();
+			}
+		});
+		
+		billeteDe100000.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				eventoSeleccionDinero100000();
 			}
 		});
 	}
