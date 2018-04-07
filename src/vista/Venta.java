@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import controlador.ControladorProductoCasilla;
 import vo.Casilla;
 import vista.InicializarMaquina;
 import vista.InicioOperario;
@@ -48,6 +49,7 @@ public class Venta extends JFrame {
 	private JTextField cantidadIngresada;
 	private static int cantidad;
 	private JButton realizarCompra;
+	private static ControladorProductoCasilla controladorProductoCasilla;
 
 	private boolean estaMaquinaInicializada;
 
@@ -116,8 +118,6 @@ public class Venta extends JFrame {
 		monedaDeCien.setBounds(46, 320, 64, 58);
 		contentPane.add(monedaDeCien);
 		
-		//Image imagenExterna = new ImageIcon("tierra.jpg").getImage();
-
 		monedaDe200 = new JLabel("");
 		monedaDe200.setIcon(new ImageIcon(Venta.class.getResource("/imagenes/MonedaDe200.PNG")));
 		monedaDe200.setBounds(115, 322, 46, 53);
@@ -177,7 +177,8 @@ public class Venta extends JFrame {
 		contentPane.add(realizarCompra);
 
 		eventos();
-		mostrarMaquina();
+	//	controladorProductoCasilla.mostrarMaquina();
+	//	mostrarMaquina();
 
 	}
 
@@ -201,7 +202,7 @@ public class Venta extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				eventoSeleccionDinero();
-				mostrarMaquina() ;
+			//	mostrarMaquina() ;
 			}
 		});
 
@@ -209,7 +210,7 @@ public class Venta extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				eventoSeleccionDinero200();
-				mostrarMaquina() ;
+			//	mostrarMaquina() ;
 			}
 		});
 
@@ -217,7 +218,7 @@ public class Venta extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				eventoSeleccionDinero500();
-				mostrarMaquina() ;
+			//	mostrarMaquina() ;
 
 			    
 			}
@@ -248,7 +249,7 @@ public class Venta extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				eventoSeleccionDinero10000();
-				 mostrarMaquina() ;
+				// mostrarMaquina() ;
 			}
 		});
 		
@@ -274,7 +275,7 @@ public class Venta extends JFrame {
 		});
 	}
 
-	public void mostrarMaquina() {
+	/*public void mostrarMaquina() {
 		try {
 			GridLayout gl = new GridLayout(0, maquina[0].length);
 			pnlMaquina.setLayout(gl);
@@ -298,7 +299,7 @@ public class Venta extends JFrame {
 			setVisible(false);
 			estaMaquinaInicializada = true;
 		}
-	}
+	}*/
 
 	public void cambiarInterfaz() {
 		InicioOperario inicioOperario = new InicioOperario();
