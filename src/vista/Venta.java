@@ -34,10 +34,12 @@ public class Venta extends JFrame {
 	private JTextField precioProducto;
 	private JLabel textoProducto;
 	private JLabel mensaje1;
+	private JLabel mensaje2;
 	private JLabel textoPrecio;
 	private JLabel monedaDeCien;
 	private JLabel monedaDe200;
 	private JLabel monedaDe500;
+	private JLabel textoCantidad;
 	private JLabel billeteDe1000;
 	private JLabel billeteDe2000;
 	private JLabel billeteDe5000;
@@ -47,6 +49,7 @@ public class Venta extends JFrame {
 	private JLabel billeteDe100000;
 	private JLabel txtCantidad;
 	private JTextField cantidadIngresada;
+	private JTextField cantidadProducto;
 	private static int cantidad;
 	private JButton realizarCompra;
 	private JButton regresar;
@@ -82,36 +85,49 @@ public class Venta extends JFrame {
 		contentPane.setLayout(null);
 
 		soyAdmin = new JButton("Soy administrador");
-		soyAdmin.setBounds(200, 20, 140, 23);
+		soyAdmin.setBounds(460, 20, 140, 23);
 		contentPane.add(soyAdmin);
 
+		textoCantidad= new JLabel("Cantidad:");
+		textoCantidad.setBounds(145, 165, 146, 100);
+		contentPane.add(textoCantidad);
+		
 		cancelarTransaccion = new JButton("Cancelar transaccion");
-		cancelarTransaccion.setBounds(200, 60, 165, 23);
+		cancelarTransaccion.setBounds(460, 60, 165, 23);
 		contentPane.add(cancelarTransaccion);
-
+		
+		mensaje2 = new JLabel("Bienvenido Comprador");
+		mensaje2.setFont(new Font("Segoe UI Emoji", Font.ITALIC, 16));
+		mensaje2.setBounds(180, 20, 164, 25);
+		contentPane.add(mensaje2);
+		
 		nombreProducto = new JTextField();
-		nombreProducto.setBounds(200, 198, 133, 23);
+		nombreProducto.setBounds(200, 78, 133, 23);
 		contentPane.add(nombreProducto);
 		nombreProducto.setColumns(10);
 
 		textoProducto = new JLabel("Producto comprado:");
 		textoProducto.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textoProducto.setBounds(68, 198, 146, 19);
+		textoProducto.setBounds(68, 78, 146, 19);
 		contentPane.add(textoProducto);
 
 		textoPrecio = new JLabel("Precio:");
 		textoPrecio.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textoPrecio.setBounds(156, 245, 146, 19);
+		textoPrecio.setBounds(156, 140, 146, 19);
 		contentPane.add(textoPrecio);
 
 		precioProducto = new JTextField();
 		precioProducto.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		precioProducto.setBounds(200, 245, 133, 23);
+		precioProducto.setBounds(200, 140, 133, 23);
 		contentPane.add(precioProducto);
-
+		
+		cantidadProducto = new JTextField();
+		cantidadProducto.setBounds(200, 200, 121, 30);
+		contentPane.add(cantidadProducto);
+				
 		mensaje1 = new JLabel("seleccione los billetes y/o monedas con los " + "cuáles va a pagar");
-		mensaje1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		mensaje1.setBounds(46, 295, 380, 19);
+		mensaje1.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		mensaje1.setBounds(38, 268, 445, 19);
 		contentPane.add(mensaje1);
 
 		monedaDeCien = new JLabel("");
@@ -166,19 +182,19 @@ public class Venta extends JFrame {
 		
 		txtCantidad = new JLabel("Cantidad ingresada: ");
 		txtCantidad.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		txtCantidad.setBounds(156, 529, 146, 19);
+		txtCantidad.setBounds(50, 537, 146, 19);
 		contentPane.add(txtCantidad);
 
 		cantidadIngresada = new JTextField();
-		cantidadIngresada.setBounds(156, 570, 121, 30);
+		cantidadIngresada.setBounds(175, 535, 121, 30);
 		contentPane.add(cantidadIngresada);
 
 		realizarCompra = new JButton("Realizar Compra");
-		realizarCompra.setBounds(280, 525, 165, 23);
+		realizarCompra.setBounds(130, 615, 165, 23);
 		contentPane.add(realizarCompra);
 		
 		regresar = new JButton("Regresar");
-		regresar.setBounds(450, 525, 165, 23);
+		regresar.setBounds(305, 615, 165, 23);
 		contentPane.add(regresar);
 		
 		eventos();
@@ -189,6 +205,13 @@ public class Venta extends JFrame {
 
 	public void eventos() {
 
+		regresar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				cambiarInterfaz1();
+			}
+		});
+		
 		soyAdmin.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -281,6 +304,10 @@ public class Venta extends JFrame {
 		});
 	}
 	
+	public void seleccionarCasillaCompra() {
+		
+	}
+	
 	public void mostrarMaquina() {
 		try {
 			GridLayout gl=new GridLayout(0, maquina.length);
@@ -294,7 +321,7 @@ public class Venta extends JFrame {
 					if(boton.getText().length()==1) {
 						boton.setText("(" + (i + 1) + "-" + (j + 1) + ")");
 					}
-					boton.setBounds((120 * i) + 500, (80 * j) + 85, 120, 50);
+					boton.setBounds((120 * i) + 500, (80 * j) + 85, 135, 50);
 			//		pnlMaquina.add(boton);
 					contentPane.add(boton);
 				}
@@ -317,9 +344,15 @@ public class Venta extends JFrame {
 	public void cambiarInterfaz() {
 		InicioOperario inicioOperario = new InicioOperario();
 		inicioOperario.setVisible(true);
-		this.dispose();
+		this.dispose();// No borrar esta línea
 	}
 
+	public void cambiarInterfaz1() {
+		MenuOperario menuOperario= new MenuOperario();
+		menuOperario.setVisible(true);
+		this.dispose();
+	}
+	
 	public void eventoSeleccionDinero() {
 		String valor = "";
 		cantidad = cantidad + 100;

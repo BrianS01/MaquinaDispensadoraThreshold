@@ -91,8 +91,10 @@ public class InicializarMaquina extends JFrame {
 
 		botonCrearMaquina = new JButton("Crear maquina");
 		botonCrearMaquina.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		botonCrearMaquina.setBounds(168, 206, 121, 23);
+		botonCrearMaquina.setBounds(118, 206, 121, 20);
+		//botonCrearMaquina.setBounds(168, 206, 121, 23);
 		contentPane.add(botonCrearMaquina);
+		
 		mensaje = new JLabel("Msg:");
 		mensaje.setBounds(168, 170, 145, 37);
 		contentPane.add(mensaje);
@@ -135,7 +137,7 @@ public class InicializarMaquina extends JFrame {
 				for (int i = 0; i < maquina.length; i++) {
 					for (int j = 0; j < maquina[0].length; j++) {
 						JButton boton = maquina[i][j].getBoton();
-						boton.setBounds((150 * i) + 500, (80 * j) + 55, 100, 50);
+						boton.setBounds((150 * i) + 400, (80 * j) + 55, 100, 50);
 						p.add(boton);
 					}
 				}
