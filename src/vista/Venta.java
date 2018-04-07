@@ -179,7 +179,7 @@ public class Venta extends JFrame {
 		eventos();
 	//	controladorProductoCasilla.mostrarMaquina();
 	//	mostrarMaquina();
-
+		mostrarMaquina();
 	}
 
 	public void eventos() {
@@ -273,6 +273,38 @@ public class Venta extends JFrame {
 				eventoSeleccionDinero100000();
 			}
 		});
+	}
+	
+	public void mostrarMaquina() {
+		try {
+			GridLayout gl=new GridLayout(0, maquina.length);
+			pnlMaquina.setLayout(gl);
+			pnlMaquina.removeAll();
+			getContentPane().remove(pnlMaquina);
+			
+			for (int i = 0; i < maquina.length; i++) {
+				for (int j = 0; j < maquina[0].length; j++) {
+					boton = maquina[i][j].getBoton();
+					if(boton.getText().length()==1) {
+						boton.setText("(" + (i + 1) + "-" + (j + 1) + ")");
+					}
+					boton.setBounds((150 * i) + 100, (80 * j) + 85, 100, 25);
+			//		pnlMaquina.add(boton);
+					contentPane.add(boton);
+				}
+			}
+			getContentPane().add(pnlMaquina);
+			getContentPane().revalidate();
+			getContentPane().repaint();
+			
+			System.out.println("Termino la insercion");
+			
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Debe inicializar la maquina primero.");
+			menuOperario.setVisible(true);
+			setVisible(false);
+			estaMaquinaInicializada = true;
+		}
 	}
 
 	/*public void mostrarMaquina() {
