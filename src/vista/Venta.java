@@ -49,6 +49,7 @@ public class Venta extends JFrame {
 	private JTextField cantidadIngresada;
 	private static int cantidad;
 	private JButton realizarCompra;
+	private JButton regresar;
 	private static ControladorProductoCasilla controladorProductoCasilla;
 
 	private boolean estaMaquinaInicializada;
@@ -172,10 +173,14 @@ public class Venta extends JFrame {
 		cantidadIngresada.setBounds(156, 570, 121, 30);
 		contentPane.add(cantidadIngresada);
 
-		realizarCompra = new JButton();
+		realizarCompra = new JButton("Realizar Compra");
 		realizarCompra.setBounds(280, 525, 165, 23);
 		contentPane.add(realizarCompra);
-
+		
+		regresar = new JButton("Regresar");
+		regresar.setBounds(450, 525, 165, 23);
+		contentPane.add(regresar);
+		
 		eventos();
 	//	controladorProductoCasilla.mostrarMaquina();
 	//	mostrarMaquina();
@@ -188,6 +193,7 @@ public class Venta extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				cambiarInterfaz();
+				
 			}
 		});
 
@@ -288,7 +294,7 @@ public class Venta extends JFrame {
 					if(boton.getText().length()==1) {
 						boton.setText("(" + (i + 1) + "-" + (j + 1) + ")");
 					}
-					boton.setBounds((150 * i) + 100, (80 * j) + 85, 100, 25);
+					boton.setBounds((120 * i) + 500, (80 * j) + 85, 120, 50);
 			//		pnlMaquina.add(boton);
 					contentPane.add(boton);
 				}
@@ -307,35 +313,11 @@ public class Venta extends JFrame {
 		}
 	}
 
-	/*public void mostrarMaquina() {
-		try {
-			GridLayout gl = new GridLayout(0, maquina[0].length);
-			pnlMaquina.setLayout(gl);
-			pnlMaquina.removeAll();
-			contentPane.remove(pnlMaquina);
-
-			for (int i = 0; i < maquina.length; i++) {
-				for (int j = 0; j < maquina[0].length; j++) {
-					boton = maquina[i][j].getBoton();
-				//	boton.setBounds((150 * i) + 500, (80 * j) + 85, 100, 25);
-					boton.setBounds(200, 20, 140, 23);
-					pnlMaquina.add(boton);
-				}
-			}
-			contentPane.add(pnlMaquina);
-			contentPane.revalidate();
-			contentPane.repaint();
-			System.out.println("Termino la insercion");
-		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Debe inicializar la maquina primero.");
-			setVisible(false);
-			estaMaquinaInicializada = true;
-		}
-	}*/
-
+	
 	public void cambiarInterfaz() {
 		InicioOperario inicioOperario = new InicioOperario();
 		inicioOperario.setVisible(true);
+		this.dispose();
 	}
 
 	public void eventoSeleccionDinero() {
