@@ -333,12 +333,6 @@ public class Venta extends JFrame {
 								"y su cambio es:"+vueltas);
 						System.out.println(casilla.getCantidadDeProducto() + " DESPUES");
 						mostrarMaquina();
-				//		String datos[]=new String[4];
-				//		datos[0]=producto.getNombre();
-				//		datos[1]=String.valueOf(producto.getPrecio());
-				//		datos[2]=String.valueOf(producto.getPrecio());
-				//		datos[3]=String.valueOf(dineroIngresado);
-				//		datos[4]=String.valueOf(vueltas);
 					}
 					else {
 						JOptionPane.showMessageDialog(null, "El dinero ingresado no es suficiente");
