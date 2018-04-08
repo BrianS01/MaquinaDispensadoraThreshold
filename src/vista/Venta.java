@@ -226,7 +226,18 @@ public class Venta extends JFrame {
 		cancelarTransaccion.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-
+				if(precioProducto.getText().length()==0 && nombreProducto.getText().length()==0) {
+					JOptionPane.showMessageDialog(null, "Usted no puede cancelar una compra que no ha hecho");
+				}
+				else if(cantidadIngresada.getText().length()==0) {
+					JOptionPane.showMessageDialog(null, "Compra cancelada, vuelva pronto");
+					nombreProducto.setText("");
+					precioProducto.setText("");
+				}
+				else if(cantidadIngresada.getText().length()>0) {
+					JOptionPane.showMessageDialog(null, "Usted no puede cancelar la compra");
+				}
+				//else if()
 			}
 		});
 
@@ -310,26 +321,36 @@ public class Venta extends JFrame {
 			public void mouseClicked(MouseEvent arg0) {
 				int dineroIngresado = Integer.parseInt(cantidadIngresada.getText());
 				int cantidadProducto = casilla.getCantidadDeProducto();
+				int vueltas = producto.getPrecio()-dineroIngresado; 
 				if (cantidadProducto > 0) {
 					if (dineroIngresado >= producto.getPrecio()) {
 						Casilla casilla = maquina[fila][columna];
 						casilla.setCantidadDeProducto(--cantidadProducto);
 						maquina[fila][columna] = casilla;
-						JOptionPane.showMessageDialog(null, "Compra realizada con exito" + producto.getNombre());
+						JOptionPane.showMessageDialog(null, "Compra realizada con exito"
+						+"Usted compro: "+producto.getNombre()+"Precio :"
+								+producto.getPrecio()+"usted ingreso"+ dineroIngresado +
+								"y su cambio es:"+vueltas);
 						System.out.println(casilla.getCantidadDeProducto() + " DESPUES");
 						mostrarMaquina();
-					} else {
+				//		String datos[]=new String[4];
+				//		datos[0]=producto.getNombre();
+				//		datos[1]=String.valueOf(producto.getPrecio());
+				//		datos[2]=String.valueOf(producto.getPrecio());
+				//		datos[3]=String.valueOf(dineroIngresado);
+				//		datos[4]=String.valueOf(vueltas);
+					}
+					else {
 						JOptionPane.showMessageDialog(null, "El dinero ingresado no es suficiente");
 					}
-				} else {
-					JOptionPane.showMessageDialog(null, "No hay productos disponible");
+				} else if(nombreProducto.getText().length()==0 && precioProducto.getText().length()==0 && cantidadIngresada.getText().length()==0){
+				   JOptionPane.showMessageDialog(null, "Usted no seleccionado ningún producto");
 				}
-			}
+				else {
+					JOptionPane.showMessageDialog(null, "No hay productos disponibles");
+				}
+				}
 		});
-
-	}
-
-	public void estadoProducto() {
 
 	}
 
@@ -388,7 +409,7 @@ public class Venta extends JFrame {
 			}
 			System.out.println(pnlMaquina.getPreferredSize() + " tamanio de panel");
 			// pnlMaquina.setBounds(new Rectangle(pnlMaquina.getPreferredSize()));
-			pnlMaquina.setBounds(500, 80, 400, 120);
+			pnlMaquina.setBounds(500, 120, 620, 120);
 			getContentPane().add(pnlMaquina);
 			getContentPane().revalidate();
 			getContentPane().repaint();
