@@ -137,6 +137,7 @@ public class InicializarMaquina extends JFrame {
 				for (int i = 0; i < maquina.length; i++) {
 					for (int j = 0; j < maquina[0].length; j++) {
 						JButton boton = maquina[i][j].getBoton();
+						boton.setName(i+"-"+j);
 						boton.setBounds((150 * i) + 400, (80 * j) + 55, 100, 50);
 						p.add(boton);
 					}

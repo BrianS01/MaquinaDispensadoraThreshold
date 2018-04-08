@@ -286,7 +286,7 @@ public class AgregarProductoCasilla extends JFrame {
 						boton.setText("(" + (i + 1) + "-" + (j + 1) + ")");
 					}
 				//	boton.setBounds((150 * i) + 500, (80 * j) + 85, 100, 25);
-					boton.setBounds((120 * i) + 500, (80 * j) + 85, 120, 30);
+					boton.setBounds((120 * i) + 500, (80 * j) + 85, 120, 300);
 					pnlMaquina.add(boton);
 				}
 			}

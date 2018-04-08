@@ -3,6 +3,7 @@ package vista;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -17,6 +18,7 @@ import javax.swing.border.EmptyBorder;
 
 import controlador.ControladorProductoCasilla;
 import vo.Casilla;
+import vo.Producto;
 import vista.InicializarMaquina;
 import vista.InicioOperario;
 import vista.MenuOperario;
@@ -49,13 +51,15 @@ public class Venta extends JFrame {
 	private JLabel billeteDe100000;
 	private JLabel txtCantidad;
 	private JTextField cantidadIngresada;
-	private JTextField cantidadProducto;
 	private static int cantidad;
 	private JButton realizarCompra;
 	private JButton regresar;
 	private static ControladorProductoCasilla controladorProductoCasilla;
-
+	private int fila;
+	private int columna;
 	private boolean estaMaquinaInicializada;
+	private Producto producto;
+	private Casilla casilla;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -73,9 +77,16 @@ public class Venta extends JFrame {
 
 	public Venta(MenuOperario menuOperario) {
 		this.menuOperario = menuOperario;
-
-		pnlMaquina = new JPanel();
+		cantidad = 0;
 		maquina = menuOperario.getInicializarMaquina1().getMaquina();
+		pnlMaquina = new JPanel();
+		GridLayout gl;
+		if (maquina != null) {
+			gl = new GridLayout(0, maquina.length);
+		} else {
+			gl = new GridLayout(0, 1);
+		}
+		pnlMaquina.setLayout(gl);
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(10, 10, 1190, 725);
@@ -88,19 +99,15 @@ public class Venta extends JFrame {
 		soyAdmin.setBounds(460, 20, 140, 23);
 		contentPane.add(soyAdmin);
 
-		textoCantidad= new JLabel("Cantidad:");
-		textoCantidad.setBounds(145, 165, 146, 100);
-		contentPane.add(textoCantidad);
-		
 		cancelarTransaccion = new JButton("Cancelar transaccion");
 		cancelarTransaccion.setBounds(460, 60, 165, 23);
 		contentPane.add(cancelarTransaccion);
-		
+
 		mensaje2 = new JLabel("Bienvenido Comprador");
 		mensaje2.setFont(new Font("Segoe UI Emoji", Font.ITALIC, 16));
 		mensaje2.setBounds(180, 20, 164, 25);
 		contentPane.add(mensaje2);
-		
+
 		nombreProducto = new JTextField();
 		nombreProducto.setBounds(200, 78, 133, 23);
 		contentPane.add(nombreProducto);
@@ -120,11 +127,7 @@ public class Venta extends JFrame {
 		precioProducto.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		precioProducto.setBounds(200, 140, 133, 23);
 		contentPane.add(precioProducto);
-		
-		cantidadProducto = new JTextField();
-		cantidadProducto.setBounds(200, 200, 121, 30);
-		contentPane.add(cantidadProducto);
-				
+
 		mensaje1 = new JLabel("seleccione los billetes y/o monedas con los " + "cuáles va a pagar");
 		mensaje1.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		mensaje1.setBounds(38, 268, 445, 19);
@@ -134,7 +137,7 @@ public class Venta extends JFrame {
 		monedaDeCien.setIcon(new ImageIcon(Venta.class.getResource("/imagenes/MonedaDe100.PNG")));
 		monedaDeCien.setBounds(46, 320, 64, 58);
 		contentPane.add(monedaDeCien);
-		
+
 		monedaDe200 = new JLabel("");
 		monedaDe200.setIcon(new ImageIcon(Venta.class.getResource("/imagenes/MonedaDe200.PNG")));
 		monedaDe200.setBounds(115, 322, 46, 53);
@@ -169,37 +172,37 @@ public class Venta extends JFrame {
 		billeteDe20000.setIcon(new ImageIcon(Venta.class.getResource("/imagenes/billeteDe20000.PNG")));
 		billeteDe20000.setBounds(46, 460, 114, 59);
 		contentPane.add(billeteDe20000);
-		
+
 		billeteDe50000 = new JLabel("");
 		billeteDe50000.setIcon(new ImageIcon(Venta.class.getResource("/imagenes/billeteDe50000.PNG")));
 		billeteDe50000.setBounds(163, 458, 114, 59);
 		contentPane.add(billeteDe50000);
-		
+
 		billeteDe100000 = new JLabel("");
 		billeteDe100000.setIcon(new ImageIcon(Venta.class.getResource("/imagenes/billeteDeCienMil.PNG")));
 		billeteDe100000.setBounds(295, 458, 139, 59);
 		contentPane.add(billeteDe100000);
-		
-		txtCantidad = new JLabel("Cantidad ingresada: ");
-		txtCantidad.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		txtCantidad.setBounds(50, 537, 146, 19);
-		contentPane.add(txtCantidad);
-
-		cantidadIngresada = new JTextField();
-		cantidadIngresada.setBounds(175, 535, 121, 30);
-		contentPane.add(cantidadIngresada);
 
 		realizarCompra = new JButton("Realizar Compra");
 		realizarCompra.setBounds(130, 615, 165, 23);
 		contentPane.add(realizarCompra);
-		
+
 		regresar = new JButton("Regresar");
 		regresar.setBounds(305, 615, 165, 23);
 		contentPane.add(regresar);
-		
+
+		txtCantidad = new JLabel("Cantidad ingresada: ");
+		txtCantidad.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtCantidad.setBounds(156, 529, 146, 19);
+		contentPane.add(txtCantidad);
+
+		cantidadIngresada = new JTextField();
+		cantidadIngresada.setBounds(156, 570, 121, 30);
+		contentPane.add(cantidadIngresada);
+
 		eventos();
-	//	controladorProductoCasilla.mostrarMaquina();
-	//	mostrarMaquina();
+		// controladorProductoCasilla.mostrarMaquina();
+		// mostrarMaquina();
 		mostrarMaquina();
 	}
 
@@ -211,12 +214,12 @@ public class Venta extends JFrame {
 				cambiarInterfaz1();
 			}
 		});
-		
+
 		soyAdmin.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				cambiarInterfaz();
-				
+
 			}
 		});
 
@@ -226,12 +229,12 @@ public class Venta extends JFrame {
 
 			}
 		});
-		
+
 		monedaDeCien.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				eventoSeleccionDinero();
-			//	mostrarMaquina() ;
+				// mostrarMaquina() ;
 			}
 		});
 
@@ -239,7 +242,7 @@ public class Venta extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				eventoSeleccionDinero200();
-			//	mostrarMaquina() ;
+				// mostrarMaquina() ;
 			}
 		});
 
@@ -247,9 +250,8 @@ public class Venta extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				eventoSeleccionDinero500();
-			//	mostrarMaquina() ;
+				// mostrarMaquina() ;
 
-			    
 			}
 		});
 
@@ -281,57 +283,118 @@ public class Venta extends JFrame {
 				// mostrarMaquina() ;
 			}
 		});
-		
+
 		billeteDe20000.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				eventoSeleccionDinero20000();
 			}
 		});
-		
+
 		billeteDe50000.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				eventoSeleccionDinero50000();
 			}
 		});
-		
+
 		billeteDe100000.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				eventoSeleccionDinero100000();
 			}
 		});
+
+		realizarCompra.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				int dineroIngresado = Integer.parseInt(cantidadIngresada.getText());
+				int cantidadProducto = casilla.getCantidadDeProducto();
+				if (cantidadProducto > 0) {
+					if (dineroIngresado >= producto.getPrecio()) {
+						Casilla casilla = maquina[fila][columna];
+						casilla.setCantidadDeProducto(--cantidadProducto);
+						maquina[fila][columna] = casilla;
+						JOptionPane.showMessageDialog(null, "Compra realizada con exito" + producto.getNombre());
+						System.out.println(casilla.getCantidadDeProducto() + " DESPUES");
+						mostrarMaquina();
+					} else {
+						JOptionPane.showMessageDialog(null, "El dinero ingresado no es suficiente");
+					}
+				} else {
+					JOptionPane.showMessageDialog(null, "No hay productos disponible");
+				}
+			}
+		});
+
 	}
-	
-	public void seleccionarCasillaCompra() {
-		
+
+	public void estadoProducto() {
+
 	}
-	
+
+	public void seleccionarCasillaCompra(MouseEvent event) {
+		try {
+			String coordenadas = ((JButton) event.getSource()).getName();
+			fila = Integer.parseInt(coordenadas.split("-")[0]);
+			columna = Integer.parseInt(coordenadas.split("-")[1]);
+			casilla = maquina[fila][columna];
+			producto = buscarProducto(casilla.getIdProducto());
+			precioProducto.setText("$" + producto.getPrecio());
+			nombreProducto.setText(producto.getNombre());
+			System.out.println(casilla.getCantidadDeProducto());
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Producto no disponible");
+		}
+	}
+
+	public Producto buscarProducto(int idProducto) {
+		Producto[] productos = menuOperario.getVerListaDeProductos().verProductos();
+		Producto prod = null;
+		for (Producto pr : productos) {
+			if (pr.getIdProducto() == idProducto) {
+				prod = pr;
+				break;
+			}
+		}
+		return prod;
+	}
+
 	public void mostrarMaquina() {
 		try {
-			GridLayout gl=new GridLayout(0, maquina.length);
-			pnlMaquina.setLayout(gl);
+
 			pnlMaquina.removeAll();
 			getContentPane().remove(pnlMaquina);
-			
+
 			for (int i = 0; i < maquina.length; i++) {
 				for (int j = 0; j < maquina[0].length; j++) {
 					boton = maquina[i][j].getBoton();
-					if(boton.getText().length()==1) {
+					if (boton.getText().length() == 1) {
 						boton.setText("(" + (i + 1) + "-" + (j + 1) + ")");
 					}
-					boton.setBounds((120 * i) + 500, (80 * j) + 85, 135, 50);
-			//		pnlMaquina.add(boton);
-					contentPane.add(boton);
+					boton.setBounds((120 * i) + 500, (80 * j) + 85, 300, 50);
+					boton.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseClicked(MouseEvent event) {
+							seleccionarCasillaCompra(event);
+						}
+					});
+
+					pnlMaquina.add(boton);
+					// pnlMaquina.setBounds((120 * i) + 500, (80 * j) + 85, 300, 50);
+					// contentPane.add(boton);
+					System.out.println("(" + (i + 1) + "-" + (j + 1) + ")");
 				}
 			}
+			System.out.println(pnlMaquina.getPreferredSize() + " tamanio de panel");
+			// pnlMaquina.setBounds(new Rectangle(pnlMaquina.getPreferredSize()));
+			pnlMaquina.setBounds(500, 80, 400, 120);
 			getContentPane().add(pnlMaquina);
 			getContentPane().revalidate();
 			getContentPane().repaint();
-			
+
 			System.out.println("Termino la insercion");
-			
+
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "Debe inicializar la maquina primero.");
 			menuOperario.setVisible(true);
@@ -340,7 +403,6 @@ public class Venta extends JFrame {
 		}
 	}
 
-	
 	public void cambiarInterfaz() {
 		InicioOperario inicioOperario = new InicioOperario();
 		inicioOperario.setVisible(true);
@@ -348,11 +410,10 @@ public class Venta extends JFrame {
 	}
 
 	public void cambiarInterfaz1() {
-		MenuOperario menuOperario= new MenuOperario();
 		menuOperario.setVisible(true);
 		this.dispose();
 	}
-	
+
 	public void eventoSeleccionDinero() {
 		String valor = "";
 		cantidad = cantidad + 100;
