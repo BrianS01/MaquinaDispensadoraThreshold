@@ -27,7 +27,8 @@ public class MenuOperario extends JFrame {
 	public ControladorProductoCasilla controladorProductoCasilla;
 	private InicializarMaquina inicializarMaquina1;
 	private AgregarProductoCasilla agregarProductoCasilla;
-
+	private VerListaDeProducto verListaDeProductos;
+	private EliminarProducto eliminarProducto2 ;
 	private JButton salir;
 
 	/**
@@ -50,9 +51,10 @@ public class MenuOperario extends JFrame {
 	 * Create the frame.
 	 */
 	public MenuOperario() {
-		inicializarMaquina1 = new InicializarMaquina(this);
-
+		inicializarMaquina1 = new InicializarMaquina(this);		
 		controladorProductoCasilla = new ControladorProductoCasilla();
+		verListaDeProductos = new VerListaDeProducto(this);
+		eliminarProducto2 = new EliminarProducto(this);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 587);
 		contentPane = new JPanel();
@@ -140,13 +142,11 @@ public class MenuOperario extends JFrame {
 	}
 
 	public void cambiarInterfaz1() {
-		VerListaDeProducto verListaDeProductos = new VerListaDeProducto(this);
 		verListaDeProductos.setVisible(true);
 		this.dispose();
 	}
 
 	public void cambiarInterfaz2() {
-		EliminarProducto eliminarProducto2 = new EliminarProducto(this);
 		eliminarProducto2.setVisible(true);
 		this.dispose();
 	}
@@ -166,6 +166,7 @@ public class MenuOperario extends JFrame {
 
 	public void cambiarInterfaz5() {
 		venta1 = new Venta(this);
+
 		if (!venta1.isEstaMaquinaInicializada()) {
 			setVisible(false);
 			venta1.setVisible(true);
@@ -175,5 +176,15 @@ public class MenuOperario extends JFrame {
 	public InicializarMaquina getInicializarMaquina1() {
 		return inicializarMaquina1;
 	}
+
+	public VerListaDeProducto getVerListaDeProductos() {
+		return verListaDeProductos;
+	}
+
+	public void setVerListaDeProductos(VerListaDeProducto verListaDeProductos) {
+		this.verListaDeProductos = verListaDeProductos;
+	}
+	
+	
 
 }

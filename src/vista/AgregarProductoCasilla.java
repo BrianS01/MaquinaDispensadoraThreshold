@@ -37,6 +37,8 @@ public class AgregarProductoCasilla extends JFrame {
 	private JLabel lblIdProducto;
 	private JLabel lblNombreProducto;
 	private JLabel lblprecio;
+	private JLabel lblfila;
+	private JLabel lblcolumna;
 	private JTextField jIdProducto;
 	private JTextField jNombre;
 	private JTextField jPrecio;
@@ -141,25 +143,32 @@ public class AgregarProductoCasilla extends JFrame {
 		contentPane.add(jNombre);
 
 		lblprecio = new JLabel("Precio");
-		lblprecio.setBounds(40, 550, 107, 14);
+		lblprecio.setBounds(40, 554, 107, 14);
 		contentPane.add(lblprecio);
 
 		jPrecio = new JTextField();
-		jPrecio.setBounds(143, 610, 97, 28);
+		jPrecio.setBounds(86, 550, 97, 28);
 		contentPane.add(jPrecio);
 
 		regresar = new JButton("Regresar");
-		regresar.setBounds(263, 550, 97, 28);
+		regresar.setBounds(340, 639, 97, 23);
 		contentPane.add(regresar);
 
 		fila = new JTextField();
-		fila.setBounds(363, 550, 97, 28);
+		fila.setBounds(65, 590, 97, 28);
 		contentPane.add(fila);
 
 		columna = new JTextField();
-		columna.setBounds(168, 550, 97, 28);
+		columna.setBounds(97, 625, 97, 28);
 		contentPane.add(columna);
-
+		
+		lblfila = new JLabel("fila");
+		lblfila.setBounds(40, 600, 107, 14);
+		contentPane.add(lblfila);
+		
+		lblcolumna = new JLabel("columna");
+		lblcolumna.setBounds(40, 633, 107, 14);
+		contentPane.add(lblcolumna);
 		/*
 		 * lblNombreProducto = new JLabel("Nombre Producto");
 		 * lblNombreProducto.setBounds(40, 335, 393, 150);
@@ -276,7 +285,8 @@ public class AgregarProductoCasilla extends JFrame {
 					if(boton.getText().length()==1) {
 						boton.setText("(" + (i + 1) + "-" + (j + 1) + ")");
 					}
-					boton.setBounds((150 * i) + 500, (80 * j) + 85, 100, 25);
+				//	boton.setBounds((150 * i) + 500, (80 * j) + 85, 100, 25);
+					boton.setBounds((120 * i) + 500, (80 * j) + 85, 120, 300);
 					pnlMaquina.add(boton);
 				}
 			}
