@@ -6,35 +6,39 @@ import vo.Producto;
 import vista.AgregarProductoCasilla;
 import vista.VerListaDeProducto;
 
-public class ControladorProductoCasilla {
-    
+public class ControladorProductoCasilla
+{
 	private ServicioProductoCasilla servicioProductoCasilla;
 	private AgregarProductoCasilla agregarProductoCasilla;
 	
-	public ControladorProductoCasilla() {
+	public ControladorProductoCasilla()
+	{
 		servicioProductoCasilla = ServicioProductoCasilla.getInstance();
 	}
 	
-	public String insertarProducto(int idProducto, String nombreProducto, int precio) {
+	public String insertarProducto(int idProducto, String nombreProducto, int precio)
+	{
 		return servicioProductoCasilla.insertarProducto(idProducto, nombreProducto, precio);
 	}
    
 	
-	public Producto[] listarProductos() {
+	public Producto[] listarProductos()
+	{
 		return servicioProductoCasilla.listarProductos();
-		
 	}
 
-	public String eliminarProducto(String nombreProducto) {
+	public String eliminarProducto(String nombreProducto)
+	{
 		return servicioProductoCasilla.eliminarProducto(nombreProducto);
 	}
 
-	public Casilla[][] crearMaquina(int filas, int columnas) {
+	public Casilla[][] crearMaquina(int filas, int columnas)
+	{
 		return servicioProductoCasilla.crearMaquina(filas, columnas);
 	}
-	public void mostrarMaquina() {
+
+	public void mostrarMaquina()
+	{
 		agregarProductoCasilla.mostrarMaquina();
 	}
-	
-	
 }
