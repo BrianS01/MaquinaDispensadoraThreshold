@@ -2,14 +2,15 @@ package Extras;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
+import java.awt.Font;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
-import java.awt.Font;
 
-public class Ejemplo extends JFrame {
+
+public class Ejemplo extends JFrame
+{
 
 	private JPanel contentPane;
 
