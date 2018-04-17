@@ -1,10 +1,9 @@
 package controlador;
 
 import modelo.ServicioProductoCasilla;
+import vista.AgregarProductoCasilla;
 import vo.Casilla;
 import vo.Producto;
-import vista.AgregarProductoCasilla;
-import vista.VerListaDeProducto;
 
 public class ControladorProductoCasilla
 {
@@ -21,7 +20,6 @@ public class ControladorProductoCasilla
 		return servicioProductoCasilla.insertarProducto(idProducto, nombreProducto, precio);
 	}
    
-	
 	public Producto[] listarProductos()
 	{
 		return servicioProductoCasilla.listarProductos();
