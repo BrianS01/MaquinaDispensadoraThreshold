@@ -9,13 +9,12 @@ public class AdministradorCasilla
 	private Casilla[][] casillas;
 	public Casilla casilla;
 
-	
-	
-	public AdministradorCasilla() {
-		
+	public AdministradorCasilla()
+	{
 	}
 	
-	public Casilla[][] crearMaquina(int filas,int columnas) {
+	public Casilla[][] crearMaquina(int filas,int columnas)
+	{
 		casillas=new Casilla[filas][columnas];
 		for(int i = 0; i < filas; i++) {
 			for(int j = 0; j < columnas ; j++) {
