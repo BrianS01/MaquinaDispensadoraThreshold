@@ -1,12 +1,10 @@
 package modelo;
 
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import vo.Casilla;
 
-public class AdministradorCasilla {
-
-	
+public class AdministradorCasilla
+{
 	private static AdministradorCasilla administradorCasilla;
 	private Casilla[][] casillas;
 	public Casilla casilla;
