@@ -223,50 +223,63 @@ public class AgregarProductoCasilla extends JFrame
 				mostrarMaquina();
 				System.out.println("Casilla modificada");
 			}
-		} else {
+		}
+		else 
+		{
 			JOptionPane.showMessageDialog(null, "Ingreso una fila o columna erradas");
 		}
 	}
 
-	public void quitarProductoCasilla(int fila, int columna) {
-		if ((fila >= 1 && fila <= maquina.length) && (columna >= 1 && columna <= maquina[0].length)) {
+	public void quitarProductoCasilla(int fila, int columna)
+	{
+		if ((fila >= 1 && fila <= maquina.length) && (columna >= 1 && columna <= maquina[0].length))
+		{
 			Casilla casilla = maquina[fila - 1][columna - 1];
 			JButton boton = maquina[fila - 1][columna - 1].getBoton();
 
 			int cantidad = casilla.getCantidadDeProducto();
-			if(cantidad>0) {
+			if(cantidad>0)
+			{
 				casilla.setCantidadDeProducto(--cantidad);
 			}
 			String contenidoBoton = "(" + fila + "-" + columna + ")\n" + jNombre.getText() + " " + jPrecio.getText()
 					+ " \n cant.(" + casilla.getCantidadDeProducto() + ")";
-			if (cantidad == 0) {
+			if (cantidad == 0)
+			{
 				casilla.setIdProducto(null);
 				contenidoBoton = "(" + fila + "-" + columna + ")" + " cant.(" + cantidad + ")";
 			}
 
 			boton.setText(contenidoBoton);
-
 			mostrarMaquina();
 			System.out.println("Casilla modificada");
-		} else {
+		}
+		else
+		{
 			JOptionPane.showMessageDialog(null, "Ingreso una fila o columna erradas");
 		}
 	}
 
-	public void mostrarMaquina() {
-		try {
+	public void mostrarMaquina()
+	{
+		try
+		{
 			GridLayout gl = new GridLayout(0, maquina[0].length);
 			pnlMaquina.setLayout(gl);
 			pnlMaquina.removeAll();
 			getContentPane().remove(pnlMaquina);
 
-			for (int i = 0; i < maquina.length; i++) {
-				for (int j = 0; j < maquina[0].length; j++) {
+			for (int i = 0; i < maquina.length; i++)
+			{
+				for (int j = 0; j < maquina[0].length; j++)
+				{
 					boton = maquina[i][j].getBoton();
-					if(boton.getText().length()==1) {
+					
+					if(boton.getText().length()==1)
+					{
 						boton.setText("(" + (i + 1) + "-" + (j + 1) + ")");
 					}
-				//	boton.setBounds((150 * i) + 500, (80 * j) + 85, 100, 25);
+					
 					boton.setBounds((120 * i) + 500, (80 * j) + 85, 120, 300);
 					pnlMaquina.add(boton);
 				}
@@ -275,7 +288,9 @@ public class AgregarProductoCasilla extends JFrame
 			getContentPane().revalidate();
 			getContentPane().repaint();
 			System.out.println("Termino la insercion");
-		} catch (Exception e) {
+		}
+		catch (Exception e)
+		{
 			JOptionPane.showMessageDialog(null, "Debe inicializar la maquina primero.");
 			menuOperario.setVisible(true);
 			setVisible(false);
@@ -283,17 +298,19 @@ public class AgregarProductoCasilla extends JFrame
 		}
 	}
 	
-	public void recorrerPanelMaquina() {
+	public void recorrerPanelMaquina()
+	{
 		//recorrer panel y cada boton del panel asignarle un evento
 		//asignar metodo generico donde tome el idpRODUCTO
 	}
 
-	public Producto[] verProductos() {
+	public Producto[] verProductos()
+	{
 		return menuOperario.controladorProductoCasilla.listarProductos();
 	}
 
-	public boolean isEstaMaquinaInicializada() {
+	public boolean isEstaMaquinaInicializada()
+	{
 		return estaMaquinaInicializada;
 	}
-
 }

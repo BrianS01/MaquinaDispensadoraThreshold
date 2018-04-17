@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -12,11 +11,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
-
 import vo.Producto;
 
-public class EliminarProducto extends JFrame{
-
+public class EliminarProducto extends JFrame
+{
 	private static final long serialVersionUID = 1L;
 	private MenuOperario menuOperario;
 	private JLabel lblSeleccion;
@@ -29,7 +27,8 @@ public class EliminarProducto extends JFrame{
 	private JTable table;
 	private DefaultTableModel dtm;
 	
-	public EliminarProducto(MenuOperario menuOperario) {
+	public EliminarProducto(MenuOperario menuOperario)
+	{
 		this.menuOperario=menuOperario;
 		setBounds(100, 10, 900, 690);
 		this.setTitle("Eliminar Productos de la lista");
@@ -71,11 +70,12 @@ public class EliminarProducto extends JFrame{
 		eventoBuscarProducto();
 		eventoRegresarAlMenu();
 		eventoEliminarProducto();
-		
 	}
 	
-	public void eventoEliminarProducto() {
-		eliminarProducto.addMouseListener(new MouseAdapter() {
+	public void eventoEliminarProducto()
+	{
+		eliminarProducto.addMouseListener(new MouseAdapter()
+		{
 			@Override
 			public void mouseClicked(MouseEvent arg0) {							
 				lblMensajes.setText( menuOperario.controladorProductoCasilla.eliminarProducto(nombreProducto.getText()));
@@ -85,37 +85,47 @@ public class EliminarProducto extends JFrame{
 		});
 	}
 	
-	public void eventoBuscarProducto() {
-		buscarProducto.addMouseListener(new MouseAdapter() {
+	public void eventoBuscarProducto()
+	{
+		buscarProducto.addMouseListener(new MouseAdapter(){
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
+			public void mouseClicked(MouseEvent arg0)
+			{
 				lblMensajes.setText( buscarProducto(nombreProducto.getText()));			
 			}
 		});
 	}
 	
-	public void eventoRegresarAlMenu() {
-		regresarMenu.addMouseListener(new MouseAdapter() {
+	public void eventoRegresarAlMenu()
+	{
+		regresarMenu.addMouseListener(new MouseAdapter()
+		{
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
+			public void mouseClicked(MouseEvent arg0)
+			{
 			   regresarAlMenu();
 			}
 		});
 	}
 	
-	public void regresarAlMenu() {
+	public void regresarAlMenu()
+	{
 		menuOperario.setVisible(true);
 	    this.dispose();
 	}
 	
-	public Producto[] verProductos() {
+	public Producto[] verProductos()
+	{
 		return menuOperario.controladorProductoCasilla.listarProductos();
 	}
 
-	public String buscarProducto(String nombreProducto) {
+	public String buscarProducto(String nombreProducto)
+	{
 		String mensajeRta = "No se encontro el producto";
-		for(Producto prd : verProductos()) {
-			if(prd!=null && nombreProducto.equalsIgnoreCase(prd.getNombre())) {
+		for(Producto prd : verProductos())
+		{
+			if(prd!=null && nombreProducto.equalsIgnoreCase(prd.getNombre()))
+			{
 				mensajeRta = "Id: "+prd.getIdProducto()
 				+" nombre: "+prd.getNombre()+" precio: "+prd.getPrecio();
 				break;
@@ -124,19 +134,22 @@ public class EliminarProducto extends JFrame{
 		return mensajeRta;
 	}
 	
-	public DefaultTableModel listarProductos() {
+	public DefaultTableModel listarProductos()
+	{
 		Producto[] productos = verProductos();
 		datos = new String[productos.length][3];
-		for (int j = 0; j < datos.length; j++) {
-			if(productos[j] !=null) {
+		for (int j = 0; j < datos.length; j++)
+		{
+			if(productos[j] !=null)
+			{
 				datos[j][0] = productos[j].getIdProducto() + "";
 				datos[j][1] = productos[j].getNombre() + "";
 				datos[j][2] = productos[j].getPrecio() + "";
 			}
 		}
+		
 		String[] columnNames = { "identificacion Producto", "Nombre Producto", "Precio", };
 		dtm = new DefaultTableModel(datos, columnNames);
-		
 		return dtm;
 	}
 }

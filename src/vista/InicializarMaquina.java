@@ -7,7 +7,6 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -17,8 +16,8 @@ import javax.swing.border.EmptyBorder;
 
 import vo.Casilla;
 
-public class InicializarMaquina extends JFrame {
-
+public class InicializarMaquina extends JFrame
+{
 	private JPanel contentPane;
 	private JTextField valorFila;
 	private JTextField valorColumna;
@@ -29,20 +28,27 @@ public class InicializarMaquina extends JFrame {
 	private JPanel p;
 	private JButton botonRegresar;
 
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
+	public static void main(String[] args)
+	{
+		EventQueue.invokeLater(new Runnable()
+		{
+			public void run()
+			{
+				try
+				{
 					InicializarMaquina frame = new InicializarMaquina(new MenuOperario());
 					frame.setVisible(true);
-				} catch (Exception e) {
+				}
+				catch (Exception e)
+				{
 					e.printStackTrace();
 				}
 			}
 		});
 	}
 
-	public InicializarMaquina(MenuOperario menuOperario) {
+	public InicializarMaquina(MenuOperario menuOperario)
+	{
 		this.menuOperario = menuOperario;
 
 		p = new JPanel();
@@ -107,35 +113,45 @@ public class InicializarMaquina extends JFrame {
 		eventos();
 	}
 
-	public void eventos() {
+	public void eventos()
+	{
 		crearArregloBotones();
 
-		valorFila.addKeyListener(new KeyAdapter() {
-			public void KeyReleased(KeyEvent e) {
+		valorFila.addKeyListener(new KeyAdapter()
+		{
+			public void KeyReleased(KeyEvent e)
+			{
 				validarNumeros();
 			}
 		});
 
-		valorColumna.addKeyListener(new KeyAdapter() {
-			public void KeyReleased(KeyEvent e) {
+		valorColumna.addKeyListener(new KeyAdapter()
+		{
+			public void KeyReleased(KeyEvent e)
+			{
 				validarNumeros();
 			}
 		});
 
 	}
 
-	public void crearArregloBotones() {
-		botonCrearMaquina.addMouseListener(new MouseAdapter() {
+	public void crearArregloBotones()
+	{
+		botonCrearMaquina.addMouseListener(new MouseAdapter()
+		{
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
+			public void mouseClicked(MouseEvent arg0)
+			{
 				maquina = crearMaquina();
 				GridLayout gl = new GridLayout(0, maquina[0].length);
 				p.setLayout(gl);
 				p.removeAll();
 				getContentPane().remove(p);
 
-				for (int i = 0; i < maquina.length; i++) {
-					for (int j = 0; j < maquina[0].length; j++) {
+				for (int i = 0; i < maquina.length; i++)
+				{
+					for (int j = 0; j < maquina[0].length; j++)
+					{
 						JButton boton = maquina[i][j].getBoton();
 						boton.setName(i+"-"+j);
 						boton.setBounds((150 * i) + 400, (80 * j) + 55, 100, 50);
@@ -148,40 +164,43 @@ public class InicializarMaquina extends JFrame {
 				System.out.println("Termino la insercion");
 			}
 		});
-		botonRegresar.addMouseListener(new MouseAdapter() {
+		
+		botonRegresar.addMouseListener(new MouseAdapter()
+		{
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
+			public void mouseClicked(MouseEvent arg0)
+			{
 				setVisible(false);
 				menuOperario.setVisible(true);
 			}
 		});
-
-			
 	}
 
-	public Casilla[][] crearMaquina() {
+	public Casilla[][] crearMaquina()
+	{
 		// valorFila.setText("3");
 		return menuOperario.controladorProductoCasilla.crearMaquina(Integer.parseInt(valorFila.getText()),
 				Integer.parseInt(valorColumna.getText()));
 
 	}
 
-	
-
-	public void validarNumeros() {
-		try {
+	public void validarNumeros()
+	{
+		try
+		{
 			Integer.parseInt(valorFila.getText());
 			Integer.parseInt(valorColumna.getText());
-		} catch (NumberFormatException nfe) {
+		}
+		catch (NumberFormatException nfe)
+		{
 			valorFila.setText("");
 			valorColumna.setText("");
 			mensaje.setText("La fila y/o columna deben ser numericas");
 		}
 	}
 
-	public Casilla[][] getMaquina() {
+	public Casilla[][] getMaquina()
+	{
 		return maquina;
 	}
-	
-	
 }
