@@ -9,9 +9,11 @@ public class AdministradorCasilla
 	private Casilla[][] casillas;
 	public Casilla casilla;
 
+	
 	public AdministradorCasilla()
 	{
 	}
+	
 	
 	public Casilla[][] crearMaquina(int filas,int columnas)
 	{
@@ -25,6 +27,7 @@ public class AdministradorCasilla
 		}
 		return casillas;
 	}
+	
 	
 	public static AdministradorCasilla getInstance()
 	{

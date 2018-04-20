@@ -12,6 +12,7 @@ public class Ejemplo extends JFrame
 {
 	private JPanel contentPane;
 	
+	
 	public static void main(String[] args)
 	{
 		EventQueue.invokeLater(new Runnable()
@@ -31,6 +32,7 @@ public class Ejemplo extends JFrame
 		});
 	}
 
+	
 	public Ejemplo()
 	{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

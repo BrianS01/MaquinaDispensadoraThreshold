@@ -33,40 +33,29 @@ public class EliminarProducto extends JFrame
 		setBounds(100, 10, 900, 690);
 		this.setTitle("Eliminar Productos de la lista");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
 		lblSeleccion = new JLabel("Escriba el nombre del producto que va a eliminar");
 		lblSeleccion.setFont(new Font("TI-Nspire", Font.PLAIN, 14));
 		lblSeleccion.setBounds(52, 527, 353, 37);				
 		getContentPane().add(lblSeleccion);	
-		
 		nombreProducto=new JTextField();
 		nombreProducto.setBounds(90, 560, 210, 23);
 		getContentPane().add(nombreProducto);
-		
 		buscarProducto = new JButton("Buscar Producto");
 		buscarProducto.setBounds(60, 590, 146, 37);
-		
 		getContentPane().add(buscarProducto);
-		
 		lblMensajes = new JLabel("Msg: ");
 		lblMensajes.setBounds(320, 555, 146, 37);
 		getContentPane().add(lblMensajes);
-
 		eliminarProducto = new JButton("Eliminar Producto");				
 		eliminarProducto.setBounds(230, 590, 146, 37);
 		getContentPane().add(eliminarProducto);	
-		
 		regresarMenu = new JButton("Regresar");				
 		regresarMenu.setBounds(680, 590, 146, 37);
 		getContentPane().add(regresarMenu);	
-		
 		dtm = listarProductos();
 		table = new JTable(dtm);	
-		
 		JScrollPane scrollPane = new JScrollPane(table);
-		
 		getContentPane().add(scrollPane, BorderLayout.CENTER);
-		
 		eventoBuscarProducto();
 		eventoRegresarAlMenu();
 		eventoEliminarProducto();
@@ -77,7 +66,8 @@ public class EliminarProducto extends JFrame
 		eliminarProducto.addMouseListener(new MouseAdapter()
 		{
 			@Override
-			public void mouseClicked(MouseEvent arg0) {							
+			public void mouseClicked(MouseEvent arg0)
+			{							
 				lblMensajes.setText( menuOperario.controladorProductoCasilla.eliminarProducto(nombreProducto.getText()));
 				dtm = listarProductos();
 				table.setModel(dtm);
@@ -87,7 +77,8 @@ public class EliminarProducto extends JFrame
 	
 	public void eventoBuscarProducto()
 	{
-		buscarProducto.addMouseListener(new MouseAdapter(){
+		buscarProducto.addMouseListener(new MouseAdapter()
+		{
 			@Override
 			public void mouseClicked(MouseEvent arg0)
 			{
