@@ -1,5 +1,6 @@
 package vista;
 
+
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -13,8 +14,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
-
 import vo.Casilla;
+
 
 public class InicializarMaquina extends JFrame
 {
@@ -28,6 +29,7 @@ public class InicializarMaquina extends JFrame
 	private JPanel p;
 	private JButton botonRegresar;
 
+	
 	public static void main(String[] args)
 	{
 		EventQueue.invokeLater(new Runnable()
@@ -47,72 +49,56 @@ public class InicializarMaquina extends JFrame
 		});
 	}
 
+	
 	public InicializarMaquina(MenuOperario menuOperario)
 	{
 		this.menuOperario = menuOperario;
-
 		p = new JPanel();
-
 		p.setBounds(500, 80, 500, 400);
 		p.setBorder(new EmptyBorder(5, 5, 5, 5));
-		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(10, 10, 1140, 700);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-
 		JLabel lblSeleccione = new JLabel("Seleccione la cantidad de filas y columnas que va a tener la m\u00E1quina");
 		lblSeleccione.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblSeleccione.setBounds(25, 37, 405, 48);
 		contentPane.add(lblSeleccione);
-
 		JLabel lblFilas = new JLabel("filas");
 		lblFilas.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblFilas.setBounds(49, 96, 46, 14);
 		contentPane.add(lblFilas);
-
 		JLabel lblColumnas = new JLabel("Columnas");
 		lblColumnas.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblColumnas.setBounds(35, 144, 73, 14);
 		contentPane.add(lblColumnas);
-
 		valorFila = new JTextField();
 		valorFila.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		valorFila.setBounds(105, 91, 154, 28);
 		contentPane.add(valorFila);
 		valorFila.setColumns(10);
-
 		valorColumna = new JTextField();
 		valorColumna.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		valorColumna.setBounds(105, 139, 154, 28);
 		contentPane.add(valorColumna);
 		valorColumna.setColumns(10);
-
-		// menuOperario.controladorProductoCasilla.crearMaquina(Integer.parseInt(valorFila.getText()),
-		// Integer.parseInt(valorColumna.getText()));
-
-		// Falta pasar los Jtext por parametros
-
 		botonCrearMaquina = new JButton("Crear maquina");
 		botonCrearMaquina.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		botonCrearMaquina.setBounds(118, 206, 121, 20);
-		//botonCrearMaquina.setBounds(168, 206, 121, 23);
 		contentPane.add(botonCrearMaquina);
-		
 		mensaje = new JLabel("Msg:");
 		mensaje.setBounds(168, 170, 145, 37);
 		contentPane.add(mensaje);
-
 		botonRegresar = new JButton("Regresar");
 		botonRegresar.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		botonRegresar.setBounds(198, 180, 121, 23);
 		contentPane.add(botonRegresar);
-		
 		eventos();
 	}
 
+	
 	public void eventos()
 	{
 		crearArregloBotones();
@@ -135,6 +121,7 @@ public class InicializarMaquina extends JFrame
 
 	}
 
+	
 	public void crearArregloBotones()
 	{
 		botonCrearMaquina.addMouseListener(new MouseAdapter()
@@ -176,6 +163,7 @@ public class InicializarMaquina extends JFrame
 		});
 	}
 
+	
 	public Casilla[][] crearMaquina()
 	{
 		// valorFila.setText("3");
@@ -184,6 +172,7 @@ public class InicializarMaquina extends JFrame
 
 	}
 
+	
 	public void validarNumeros()
 	{
 		try
@@ -199,6 +188,7 @@ public class InicializarMaquina extends JFrame
 		}
 	}
 
+	
 	public Casilla[][] getMaquina()
 	{
 		return maquina;
