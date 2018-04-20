@@ -1,9 +1,4 @@
-/controlador/
-/modelo/
 /vista/
-/vo/
-/imagenes/
-<<<<<<< HEAD
 /Extras/
-=======
->>>>>>> d747946e86a5f78dfb506de1bba059afd68a25ae
+/modelo/
+/vo/
